@@ -60,8 +60,9 @@ class VideoTracker(object):
             self.save_results_path = os.path.join(self.args.save_path, "results.txt")
 
             # create video writer
-            fourcc = cv2.VideoWriter_fourcc(*'MJPG')
-            self.writer = cv2.VideoWriter(self.save_video_path, fourcc, 20, (self.im_width, self.im_height))
+            codec = cv2.VideoWriter_fourcc(*'XVID')
+            fps = int(self.vdo.get(cv2.CAP_PROP_FPS))
+            self.writer = cv2.VideoWriter(self.save_video_path, codec, fps, (self.im_width, self.im_height))
 
             # logging
             self.logger.info("Save results to {}".format(self.args.save_path))
